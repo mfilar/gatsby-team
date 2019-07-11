@@ -1,97 +1,177 @@
-<!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
-<p align="center">
-  <a href="https://www.gatsbyjs.org">
-    <img alt="Gatsby" src="https://www.gatsbyjs.org/monogram.svg" width="60" />
-  </a>
-</p>
-<h1 align="center">
-  Gatsby's hello-world starter
-</h1>
+## Instalacja środowiska
+```javascript
+npm install -g gatsby-cli
+```
 
-Kick off your project with this hello-world boilerplate. This starter ships with the main Gatsby configuration files you might need to get up and running blazing fast with the blazing fast app generator for React.
 
-_Have another more specific idea? You may want to check out our vibrant collection of [official and community-created starters](https://www.gatsbyjs.org/docs/gatsby-starters/)._
+## Tworzenie nowego projektu
 
-## 🚀 Quick start
+```javascript
+gatsby new [rootPath] [starter]
+gatsby new gatsby-team https://github.com/gatsbyjs/gatsby-starter-hello-world
+```
 
-1.  **Create a Gatsby site.**
 
-    Use the Gatsby CLI to create a new site, specifying the hello-world starter.
+## Start projektu
 
-    ```sh
-    # create a new Gatsby site using the hello-world starter
-    gatsby new my-hello-world-starter https://github.com/gatsbyjs/gatsby-starter-hello-world
-    ```
+```javascript
+gatsby develop // visit http://localhost:8000
+```
 
-1.  **Start developing.**
 
-    Navigate into your new site’s directory and start it up.
+## Routing - katalog `pages`
 
-    ```sh
-    cd my-hello-world-starter/
-    gatsby develop
-    ```
+W tym katalogu każdy dodany plik (komponent) staje się automatycznie nową stroną. Nazwa pliku jest jego URL-em.
+Można zagnieżdżać pliki w katalogach, wtedy URL jest tworzony z połączenia nazwy folderu i nazwy pliku.  
+Np. jeśli umieścimy katalog `about` w katalogu `pages` i w nim dodamy plik `us.js` to komponent zawarty w pliku `us.js` będzie dostępny pod URL-em `/about/us`
 
-1.  **Open the source code and start editing!**
 
-    Your site is now running at `http://localhost:8000`!
+## Globalne style
 
-    _Note: You'll also see a second link: _`http://localhost:8000/___graphql`_. This is a tool you can use to experiment with querying your data. Learn more about using this tool in the [Gatsby tutorial](https://www.gatsbyjs.org/tutorial/part-five/#introducing-graphiql)._
+Aby dodać globalne style do projektu w root'cie naszego projektu należy odnaleźć (bądź stworzyć, jeśli nie ma) plik `gatsby-browser.js`  
+Jest to plik specjalny w którym można importować pliki które powinny być dostępne globalnie.
 
-    Open the `my-hello-world-starter` directory in your code editor of choice and edit `src/pages/index.js`. Save your changes and the browser will update in real time!
+Jeśli nasze globalne style znajdują się w pliku `"./src/assets/global.css"` to do zawartości pliku `gatsby-browser.js` należy dodać następującą linijkę:
 
-## 🧐 What's inside?
+```javascript
+import "./src/assets/global.css"
+```
 
-A quick look at the top-level files and directories you'll see in a Gatsby project.
+Aby zobaczyć zmiany wymagany jest restart serwera.
 
-    .
-    ├── node_modules
-    ├── src
-    ├── .gitignore
-    ├── .prettierrc
-    ├── gatsby-browser.js
-    ├── gatsby-config.js
-    ├── gatsby-node.js
-    ├── gatsby-ssr.js
-    ├── LICENSE
-    ├── package-lock.json
-    ├── package.json
-    └── README.md
 
-1.  **`/node_modules`**: This directory contains all of the modules of code that your project depends on (npm packages) are automatically installed.
+## Stylowanie komponentów
 
-2.  **`/src`**: This directory will contain all of the code related to what you will see on the front-end of your site (what you see in the browser) such as your site header or a page template. `src` is a convention for “source code”.
+Gatsby posiada out of the box wsparcie dla CSS modules.
+Wystarczy stworzyć plik z rozszerzeniem `.module.css` i jeśli go zaimportujemy, nazwy klas automatycznie będą zmieniane na styl CSS modules.
 
-3.  **`.gitignore`**: This file tells git which files it should not track / not maintain a version history for.
+Przykład:
 
-4.  **`.prettierrc`**: This is a configuration file for [Prettier](https://prettier.io/). Prettier is a tool to help keep the formatting of your code consistent.
+```javascript
+import React from "react"
+import styles from './header.module.css'; // <--- CSS modules
 
-5.  **`gatsby-browser.js`**: This file is where Gatsby expects to find any usage of the [Gatsby browser APIs](https://www.gatsbyjs.org/docs/browser-apis/) (if any). These allow customization/extension of default Gatsby settings affecting the browser.
+export default ({ text }) => <h1 className={styles.text}>{ text }</h1>;
+```
 
-6.  **`gatsby-config.js`**: This is the main configuration file for a Gatsby site. This is where you can specify information about your site (metadata) like the site title and description, which Gatsby plugins you’d like to include, etc. (Check out the [config docs](https://www.gatsbyjs.org/docs/gatsby-config/) for more detail).
 
-7.  **`gatsby-node.js`**: This file is where Gatsby expects to find any usage of the [Gatsby Node APIs](https://www.gatsbyjs.org/docs/node-apis/) (if any). These allow customization/extension of default Gatsby settings affecting pieces of the site build process.
+Inne opcje stylowania dostępne w gatsby to m.in.
+- css-in-js
+- Typography.js
+- Sass
+- JSS
+- Stylus
+- PostCSS
 
-8.  **`gatsby-ssr.js`**: This file is where Gatsby expects to find any usage of the [Gatsby server-side rendering APIs](https://www.gatsbyjs.org/docs/ssr-apis/) (if any). These allow customization of default Gatsby settings affecting server-side rendering.
 
-9.  **`LICENSE`**: Gatsby is licensed under the MIT license.
 
-10. **`package-lock.json`** (See `package.json` below, first). This is an automatically generated file based on the exact versions of your npm dependencies that were installed for your project. **(You won’t change this file directly).**
+## Pluginy
 
-11. **`package.json`**: A manifest file for Node.js projects, which includes things like metadata (the project’s name, author, etc). This manifest is how npm knows which packages to install for your project.
+Gatsby posiada bogaty zestaw plug-in'ów różnego zastosowania, jak np. obróbka obrazków, SEO, PWA.  
+Więcej informacji na ten temat można znaleźć [tutaj](https://www.gatsbyjs.org/plugins/). 
 
-12. **`README.md`**: A text file containing useful reference information about your project.
+Wybrane plug-in'y należy dołączyć w pliku `gatsby-config.js`. Przykład użycia pluginu Typography.js
 
-## 🎓 Learning Gatsby
+```javascript
+module.exports = {
+  plugins: [
+    {
+      resolve: `gatsby-plugin-typography`,
+      options: {
+        pathToConfigModule: `src/utils/typography`,
+      },
+    },
+  ],
+}
+```
 
-Looking for more guidance? Full documentation for Gatsby lives [on the website](https://www.gatsbyjs.org/). Here are some places to start:
 
-- **For most developers, we recommend starting with our [in-depth tutorial for creating a site with Gatsby](https://www.gatsbyjs.org/tutorial/).** It starts with zero assumptions about your level of ability and walks through every step of the process.
+## GraphQL
 
-- **To dive straight into code samples, head [to our documentation](https://www.gatsbyjs.org/docs/).** In particular, check out the _Guides_, _API Reference_, and _Advanced Tutorials_ sections in the sidebar.
+Gatsby do operacji na danych dostarcza interfejsu GraphQL-a. Można go znaleźć pod linkiem http://localhost:8000/___graphql gdy mamy uruchomiony sesrwer developerski.
 
-## 💫 Deploy
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-hello-world)
 
-<!-- AUTO-GENERATED-CONTENT:END -->
+## Dynamiczne tworzenie stron z plików markdown
+
+Potrzebne pluginy:
+- gatsby-source-filesystem
+- gatsby-transformer-remark
+
+Plik konfiguracyjny:
+
+```javascript
+module.exports = {
+  plugins: [
+    [...],
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `src`,
+        path: `${__dirname}/src/`,
+      },
+    },
+    `gatsby-transformer-remark`
+  ],
+}
+```
+
+
+Po uruchomieniu serwera w graphQL-owym API widoczne są dodatkowe parametry:
+- allMarkdownRemark
+- markdownRemark.
+
+
+Do tworzenia dynamicznych stron potrzeba wygenerować **slug** pod którym dane będą dostępne i stworzyć **komponent** który będzie je wyświetlać.
+
+```javascript
+const path = require(`path`)
+const { createFilePath } = require(`gatsby-source-filesystem`)
+
+exports.onCreateNode = ({ node, getNode, actions }) => {
+  const { createNodeField } = actions
+  
+  // for each markdown file
+  if (node.internal.type === `MarkdownRemark`) {
+    // generate slug from file name
+    const slug = createFilePath({ node, getNode, basePath: `people` })
+    
+    // and attach additional parameter slug with that generated value to each markdown node
+    createNodeField({
+      node,
+      name: `slug`,
+      value: slug,
+    })
+  }
+}
+
+exports.createPages = ({ graphql, actions }) => {
+  const { createPage } = actions
+  
+  // query slug for all markdown files  
+  return graphql(`
+    {
+      allMarkdownRemark {
+        edges {
+          node {
+            fields {
+              slug
+            }
+          }
+        }
+      }
+    }
+  `).then(result => {
+    // and create new page for each of the results
+    result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+      createPage({
+        path: node.fields.slug, // set generated slug as page URL
+        component: path.resolve(`./src/components/profile.js`), // component template
+        context: { // context data will be available as query parameters in template component
+          slug: node.fields.slug,
+        },
+      })
+    })
+  })
+}
+```

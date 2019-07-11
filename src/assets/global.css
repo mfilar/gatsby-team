@@ -1,0 +1,80 @@
+a {
+  background-image: none !important;
+  text-decoration: none !important;
+}
+
+.page {
+  width: 800px;
+  padding: 0 2.88rem 2.88rem;
+  margin: 0 auto;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.navbar img {
+  margin-bottom: 0;
+}
+
+.link-about {
+  display: inline-block;
+  margin-top: 1.66rem;
+  color: hotpink;
+  font-size: 1rem;
+  text-decoration: none;
+}
+
+.profile-img {
+  float: right;
+  max-width: 320px;
+  margin: 0 0 0.5rem 2rem;
+
+  object-fit:contain;
+}
+
+.employee-count {
+  color: #777;
+  font-size: 1.24rem;
+  text-align: right;
+}
+
+.employee-list {
+  list-style: none;
+  padding: 1.44rem 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 1.44rem;
+}
+
+.employee {
+  display:flex;
+  padding: 0.72rem 0;
+  margin: 0;
+
+  flex-flow: column;
+  align-items:center;
+}
+
+.employee-link {
+  display:flex;
+  flex-flow: column;
+  align-items:center;
+
+  color: inherit;
+  text-decoration: none;
+}
+
+.employee-avatar {
+  width: 140px;height:140px;border-radius:50%;object-fit:contain;margin:0;
+}
+
+.employee-name {
+  margin: 0.48rem;
+}
+
+.employee-text {
+  text-align: center;
+}
